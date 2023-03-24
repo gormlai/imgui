@@ -546,9 +546,10 @@ void ImGui_ImplVulkan_RenderDrawData(ImDrawData* draw_data, VkCommandBuffer comm
                 scissor.extent.height = (uint32_t)(clip_max.y - clip_min.y);
                 vkCmdSetScissor(command_buffer, 0, 1, &scissor);
 
+                // TODO - Font loading
                 // Bind DescriptorSet with font or user texture
                 VkDescriptorSet desc_set[1] = { (VkDescriptorSet)pcmd->TextureId };
-                if (sizeof(ImTextureID) < sizeof(ImU64))
+                if (true || sizeof(ImTextureID) < sizeof(ImU64))
                 {
                     // We don't support texture switches if ImTextureID hasn't been redefined to be 64-bit. Do a flaky check that other textures haven't been used.
                     IM_ASSERT(pcmd->TextureId == (ImTextureID)bd->FontDescriptorSet);
